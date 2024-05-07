@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SegundaParteParcialApplication<segunda_parte_parcial>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "co.edu.unicauca.asae.segunda_parte_parcial.SegundaParteParcialApplication",
+            "projectName": "segunda_parte_parcial",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
