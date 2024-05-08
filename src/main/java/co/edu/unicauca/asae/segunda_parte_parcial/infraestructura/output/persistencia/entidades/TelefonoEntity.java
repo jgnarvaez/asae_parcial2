@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name = "Telefonos")
 @Getter
 @Setter
-public class Telefono {
+public class TelefonoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,6 @@ public class Telefono {
 
     @OneToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "idTelefono", referencedColumnName = "idTelefono")
-    private Docente objDocente;
+    private DocenteEntity objDocente;
 
 }

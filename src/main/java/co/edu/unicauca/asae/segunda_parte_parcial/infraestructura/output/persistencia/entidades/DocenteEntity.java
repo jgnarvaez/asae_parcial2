@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Docente extends Persona{
+public class DocenteEntity extends PersonaEntity{
 
     @Column(nullable = false, length = 100, unique = true)
     private String correo;
@@ -31,17 +31,17 @@ public class Docente extends Persona{
 
     @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy = "objDocente")
     @PrimaryKeyJoinColumn
-    private Telefono objTelefono; 
+    private TelefonoEntity objTelefono; 
 
 
     @ManyToMany
     @JoinTable(name = "Departamentos-Docentes",
     joinColumns =  @JoinColumn(name = "idPersona"), 
     inverseJoinColumns = @JoinColumn(name = "idDepartamento"))
-    private List<Departamento> departamentos;
+    private List<DepartamentoEntity> departamentos;
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "objDocente")
-    private List<Respuesta> respuestas;
+    private List<RespuestaEntity> respuestas;
 
 
 }

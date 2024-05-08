@@ -2,8 +2,8 @@ package co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.output.persis
 
 import org.springframework.data.repository.CrudRepository;
 
-import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.output.persistencia.entidades.Cuestionario;
+import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.output.persistencia.entidades.CuestionarioEntity;
 
-public interface CuestionarioRepository extends CrudRepository<Cuestionario, Integer>{
+public interface CuestionarioRepository extends CrudRepository<CuestionarioEntity, Integer>{
 
 }

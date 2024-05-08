@@ -1,34 +1,39 @@
 package co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.output.persistencia.entidades;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Departamentos")
 @Getter
 @Setter
 @AllArgsConstructor
-public class Departamento {
+public class TipoPreguntaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDepartamento;
+    private Integer idTipoPregunta;
 
-    @Column(nullable = false, length = 100,unique = true, name = "nombreDep")
+    @Column(nullable = false, length = 200)
     private String nombre;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 200)
     private String descripcion;
 
-    public Departamento() {
+    @OneToMany(mappedBy = "objTipoPregunta", fetch = FetchType.EAGER)
+    private List<PreguntaEntity> preguntas;
+
+    public TipoPreguntaEntity() {
 
     }
-    
+
 }

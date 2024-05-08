@@ -2,6 +2,7 @@ package co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.output.persis
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,31 +10,28 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "Cuestionarios")
 @Getter
 @Setter
-@AllArgsConstructor
-public class TipoPregunta {
+public class CuestionarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idTipoPregunta;
+    private Integer idCuestionario;
 
-    @Column(nullable = false, length = 200)
-    private String nombre;
+    @Column(length = 30, nullable = false)
+    private String titulo;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, length = 30)
     private String descripcion;
 
-    @OneToMany(mappedBy = "objTipoPregunta", fetch = FetchType.EAGER)
-    private List<Pregunta> preguntas;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "objCuestionario", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<PreguntaEntity> preguntas;
 
-    public TipoPregunta() {
-
-    }
 
 }
