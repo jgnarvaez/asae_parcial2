@@ -15,4 +15,5 @@ public class Cuestionario {
     private String descripcion;
     private List<Pregunta> preguntas;
 
+    
 }
