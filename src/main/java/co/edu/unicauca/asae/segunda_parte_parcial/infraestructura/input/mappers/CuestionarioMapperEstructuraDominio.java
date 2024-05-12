@@ -16,5 +16,5 @@ public interface CuestionarioMapperEstructuraDominio {
     CuestionarioDTORespuesta mappearDeCuestionarioARespuesta(Cuestionario objCuestionario);
 
     List<CuestionarioDTORespuesta> mappearDeCuestionarioaARespuesta(List<Cuestionario> cuestionarios);
-
+    List
 }
