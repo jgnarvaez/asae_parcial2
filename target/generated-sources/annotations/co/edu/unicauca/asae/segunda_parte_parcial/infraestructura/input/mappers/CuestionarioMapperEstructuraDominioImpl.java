@@ -1,8 +1,18 @@
 package co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.mappers;
 
 import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.Cuestionario;
+import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.Docente;
+import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.Pregunta;
+import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.Respuesta;
+import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.Telefono;
+import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.TipoPregunta;
 import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.DTOPeticion.CuestionarioDTOPeticion;
 import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.DTORespuesta.CuestionarioDTORespuesta;
+import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.DTORespuesta.DocenteDTORespuesta;
+import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.DTORespuesta.PreguntaDTORespuesta;
+import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.DTORespuesta.RespuestaDTORespuesta;
+import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.DTORespuesta.TelefonoDTORespuesta;
+import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.DTORespuesta.TipoPreguntaDTORespuesta;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -10,8 +20,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-12T14:15:42-0500",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.10 (Oracle Corporation)"
+    date = "2024-05-12T15:39:08-0500",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.38.0.v20240417-1011, environment: Java 17.0.10 (Eclipse Adoptium)"
 )
 @Component
 public class CuestionarioMapperEstructuraDominioImpl implements CuestionarioMapperEstructuraDominio {
@@ -24,6 +34,10 @@ public class CuestionarioMapperEstructuraDominioImpl implements CuestionarioMapp
 
         Cuestionario cuestionario1 = new Cuestionario();
 
+        cuestionario1.setDescripcion( cuestionario.getDescripcion() );
+        cuestionario1.setIdCuestionario( cuestionario.getIdCuestionario() );
+        cuestionario1.setTitulo( cuestionario.getTitulo() );
+
         return cuestionario1;
     }
 
@@ -35,7 +49,28 @@ public class CuestionarioMapperEstructuraDominioImpl implements CuestionarioMapp
 
         CuestionarioDTORespuesta cuestionarioDTORespuesta = new CuestionarioDTORespuesta();
 
+        cuestionarioDTORespuesta.setDescripcion( objCuestionario.getDescripcion() );
+        cuestionarioDTORespuesta.setIdCuestionario( objCuestionario.getIdCuestionario() );
+        cuestionarioDTORespuesta.setPreguntas( preguntaListToPreguntaDTORespuestaList( objCuestionario.getPreguntas() ) );
+        cuestionarioDTORespuesta.setTitulo( objCuestionario.getTitulo() );
+
         return cuestionarioDTORespuesta;
+    }
+
+    @Override
+    public PreguntaDTORespuesta mappearPreguntasToPreguntaDTORespuesta(Pregunta pregunta) {
+        if ( pregunta == null ) {
+            return null;
+        }
+
+        PreguntaDTORespuesta preguntaDTORespuesta = new PreguntaDTORespuesta();
+
+        preguntaDTORespuesta.setEnunciado( pregunta.getEnunciado() );
+        preguntaDTORespuesta.setObjCuestionario( mappearDeCuestionarioARespuesta( pregunta.getObjCuestionario() ) );
+        preguntaDTORespuesta.setObjTipoPregunta( tipoPreguntaToTipoPreguntaDTORespuesta( pregunta.getObjTipoPregunta() ) );
+        preguntaDTORespuesta.setRespuestas( respuestaListToRespuestaDTORespuestaList( pregunta.getRespuestas() ) );
+
+        return preguntaDTORespuesta;
     }
 
     @Override
@@ -50,5 +85,92 @@ public class CuestionarioMapperEstructuraDominioImpl implements CuestionarioMapp
         }
 
         return list;
+    }
+
+    protected List<PreguntaDTORespuesta> preguntaListToPreguntaDTORespuestaList(List<Pregunta> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<PreguntaDTORespuesta> list1 = new ArrayList<PreguntaDTORespuesta>( list.size() );
+        for ( Pregunta pregunta : list ) {
+            list1.add( mappearPreguntasToPreguntaDTORespuesta( pregunta ) );
+        }
+
+        return list1;
+    }
+
+    protected TipoPreguntaDTORespuesta tipoPreguntaToTipoPreguntaDTORespuesta(TipoPregunta tipoPregunta) {
+        if ( tipoPregunta == null ) {
+            return null;
+        }
+
+        TipoPreguntaDTORespuesta tipoPreguntaDTORespuesta = new TipoPreguntaDTORespuesta();
+
+        tipoPreguntaDTORespuesta.setDescripcion( tipoPregunta.getDescripcion() );
+        tipoPreguntaDTORespuesta.setIdTipoPregunta( tipoPregunta.getIdTipoPregunta() );
+        tipoPreguntaDTORespuesta.setNombre( tipoPregunta.getNombre() );
+
+        return tipoPreguntaDTORespuesta;
+    }
+
+    protected TelefonoDTORespuesta telefonoToTelefonoDTORespuesta(Telefono telefono) {
+        if ( telefono == null ) {
+            return null;
+        }
+
+        TelefonoDTORespuesta telefonoDTORespuesta = new TelefonoDTORespuesta();
+
+        telefonoDTORespuesta.setIdTelefono( telefono.getIdTelefono() );
+        telefonoDTORespuesta.setNumero( telefono.getNumero() );
+        telefonoDTORespuesta.setObjDocente( docenteToDocenteDTORespuesta( telefono.getObjDocente() ) );
+
+        return telefonoDTORespuesta;
+    }
+
+    protected List<RespuestaDTORespuesta> respuestaListToRespuestaDTORespuestaList(List<Respuesta> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<RespuestaDTORespuesta> list1 = new ArrayList<RespuestaDTORespuesta>( list.size() );
+        for ( Respuesta respuesta : list ) {
+            list1.add( respuestaToRespuestaDTORespuesta( respuesta ) );
+        }
+
+        return list1;
+    }
+
+    protected DocenteDTORespuesta docenteToDocenteDTORespuesta(Docente docente) {
+        if ( docente == null ) {
+            return null;
+        }
+
+        DocenteDTORespuesta docenteDTORespuesta = new DocenteDTORespuesta();
+
+        docenteDTORespuesta.setApellidos( docente.getApellidos() );
+        docenteDTORespuesta.setCorreo( docente.getCorreo() );
+        docenteDTORespuesta.setNombres( docente.getNombres() );
+        docenteDTORespuesta.setNumeroIdentificacion( docente.getNumeroIdentificacion() );
+        docenteDTORespuesta.setObjTelefono( telefonoToTelefonoDTORespuesta( docente.getObjTelefono() ) );
+        docenteDTORespuesta.setRespuestas( respuestaListToRespuestaDTORespuestaList( docente.getRespuestas() ) );
+        docenteDTORespuesta.setTipoIdentificacion( docente.getTipoIdentificacion() );
+        docenteDTORespuesta.setVinculacion( docente.getVinculacion() );
+
+        return docenteDTORespuesta;
+    }
+
+    protected RespuestaDTORespuesta respuestaToRespuestaDTORespuesta(Respuesta respuesta) {
+        if ( respuesta == null ) {
+            return null;
+        }
+
+        RespuestaDTORespuesta respuestaDTORespuesta = new RespuestaDTORespuesta();
+
+        respuestaDTORespuesta.setDescripcion( respuesta.getDescripcion() );
+        respuestaDTORespuesta.setObjDocente( docenteToDocenteDTORespuesta( respuesta.getObjDocente() ) );
+        respuestaDTORespuesta.setObjPregunta( mappearPreguntasToPreguntaDTORespuesta( respuesta.getObjPregunta() ) );
+
+        return respuestaDTORespuesta;
     }
 }
