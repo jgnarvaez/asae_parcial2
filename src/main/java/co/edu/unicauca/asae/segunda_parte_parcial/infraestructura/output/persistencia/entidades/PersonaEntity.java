@@ -1,5 +1,7 @@
 package co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.output.persistencia.entidades;
 
+import java.lang.String;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

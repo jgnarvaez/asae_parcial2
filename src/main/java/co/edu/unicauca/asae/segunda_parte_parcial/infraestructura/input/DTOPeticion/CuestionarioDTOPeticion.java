@@ -18,9 +18,11 @@ public class CuestionarioDTOPeticion {
     private Integer idCuestionario;
 
     @NotNull(message = "{cuestionario.titulo.emptly}")
+    @Size(min = 5, max = 30, message = "{cuestionario.titulo.size}")
     private String titulo;
 
     @NotNull(message = "{cuestionario.descripcion.emptly}")
+    @Size(min = 5, max = 30, message = "{cuestionario.titulo.size}")
     private String descripcion;
 
     @Size(min = 1)
