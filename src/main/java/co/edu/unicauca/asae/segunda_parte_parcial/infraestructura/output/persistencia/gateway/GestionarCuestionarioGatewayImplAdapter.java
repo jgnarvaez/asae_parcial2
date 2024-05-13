@@ -6,7 +6,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
-import co.edu.unicauca.asae.segunda_parte_parcial.aplicacion.input.GestionarCuestionarioCUIntPort;
 import co.edu.unicauca.asae.segunda_parte_parcial.aplicacion.output.GestionarCuestionarioGatewayIntPort;
 import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.Cuestionario;
 import co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.output.persistencia.entidades.CuestionarioEntity;
