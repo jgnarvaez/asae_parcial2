@@ -6,7 +6,7 @@ import co.edu.unicauca.asae.segunda_parte_parcial.dominio.modelos.Cuestionario;
 
 public interface GestionarCuestionarioGatewayIntPort {
 
-    public Integer existeCuestionarioConNombre(String nombre);
+    //public Integer existeCuestionarioConNombre(String nombre);
 
     public Cuestionario crear(Cuestionario objCuestionario);
 

@@ -21,11 +21,11 @@ public class GestionarCuestionarioCUAdapter implements GestionarCuestionarioCUIn
     @Override
     public Cuestionario crear(Cuestionario objCuestionario) {
         Cuestionario objCuestionarioCreado = null;
-        if (this.objGestionarCuestionarioGateway.existeCuestionarioConNombre(objCuestionario.getTitulo()) > 0) {
-            this.objCuestionarioFormateadorResultados.retornarRespuestaErrorEntidadExiste("Error, se encuentra en el sistema un cuestionario con el mismo nombre."); 
-        } else {
+        //if (this.objGestionarCuestionarioGateway.existeCuestionarioConNombre(objCuestionario.getTitulo()) > 0) {
+        //    this.objCuestionarioFormateadorResultados.retornarRespuestaErrorEntidadExiste("Error, se encuentra en el sistema un cuestionario con el mismo nombre."); 
+       // } else {
             objCuestionarioCreado = this.objGestionarCuestionarioGateway.crear(objCuestionario);
-        }
+       // }
         return objCuestionarioCreado;
     }
 

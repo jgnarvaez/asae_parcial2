@@ -36,9 +36,9 @@ public class GestionarCuestionarioGatewayImplAdapter implements GestionarCuestio
         return cuestionariosObtenidos;
     }
 
-    @Override
-    public Integer existeCuestionarioConNombre(String nombre) {
-        return this.objCuestionarioRepository.existeCuestionarioConTitulo(nombre);
-    }
+   // @Override
+    //public Integer existeCuestionarioConNombre(String nombre) {
+    ////    return this.objCuestionarioRepository.existeCuestionarioConTitulo(nombre);
+   // }
 
 }

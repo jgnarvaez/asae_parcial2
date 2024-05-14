@@ -11,7 +11,7 @@ public interface CuestionarioRepository extends CrudRepository<CuestionarioEntit
 
     List<CuestionarioEntity> findByTituloStartingWithIgnoreCaseOrderByIdDesc(String titulo);
 
-    @Query("SELECT count(*) FROM Cuestionarios c WHERE c.titulo = :titulo")
-    Integer existeCuestionarioConTitulo(String titulo);
+    //@Query("SELECT count(*) FROM Cuestionarios c WHERE c.titulo = :titulo")
+    //Integer existeCuestionarioConTitulo(String titulo);
 
 }

@@ -3,8 +3,8 @@ package co.edu.unicauca.asae.segunda_parte_parcial.infraestructura.input.Control
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
